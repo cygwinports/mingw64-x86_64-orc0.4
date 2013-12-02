@@ -1,0 +1,27 @@
+CROSS_HOST="x86_64-w64-mingw32"
+inherit cross
+
+NAME="mingw64-x86_64-orc0.4"
+VERSION=0.4.18
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="Orc library for Win64 toolchain"
+DESCRIPTION="Orc is a library and set of tools for compiling and executing
+very simple programs that operate on arrays of data.  The language is a
+generic assembly language that represents many of the features available in
+SIMD architectures, including saturated addition and subtraction, and many
+arithmetic operations."
+HOMEPAGE="http://code.entropywave.com/projects/orc/"
+SRC_URI="http://code.entropywave.com/download/orc/orc-${VERSION}.tar.gz"
+SRC_DIR="orc-${VERSION}"
+
+REQUIRES="liborc0.4-devel" # for orcc
+
+src_install() {
+	cd ${B}
+	cyginstall bin_PROGRAMS=
+
+	rm -fr ${D}${CROSS_DATADIR}/gtk-doc/
+}
+
+KEEP_LA_FILES="none"
